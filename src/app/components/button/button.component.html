@@ -1,1 +1,13 @@
-<a [href]="href" [target]="target" class="bg-green-600 p-3 rounded text-white">{{label}}</a>
+<a mat-flat-button *ngIf="routerLink; else normalLink"
+   [routerLink]="routerLink"
+   [target]="target"
+   class="bg-green-600 p-3 rounded text-white">
+  {{ label }}
+</a>
+<ng-template #normalLink>
+  <a mat-flat-button [href]="href"
+     [target]="target"
+     class="bg-green-600 p-3 rounded text-white">
+    {{ label }}
+  </a>
+</ng-template>

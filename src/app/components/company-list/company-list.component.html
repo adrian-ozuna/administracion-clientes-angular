@@ -1,22 +1,21 @@
-<div *ngIf="companies.length">
-    <div class="flex flex-col gap-y-10">
-        <h1 class="text-center text-6xl">Companies</h1>
-        <div class="flex flex-row justify-center">
-            <app-button label="Add company"></app-button>
-        </div>
-        <ul class="bg-slate-50 p-5 w-3/6 mx-auto">
-          <li *ngFor="let company of companies">
-            <div class="flex flex-row justify-between mb-10">
-                <p class="font-semibold">
-                    {{ company.name }}
-                </p>
-                <div class="flex flex-row gap-x-2">
-                    <app-button label="See clients" href="/clients"></app-button>
-                    <app-button label="Delete" (click)="deleteCompany(company.id); $event.preventDefault()"></app-button>
-                </div>
-            </div>
-          </li>
-        </ul>
-    </div>
-  </div>
+<p-table [value]="companies" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Action</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-company>
+      <tr>
+          <td>{{ company.id }}</td>
+          <td>{{ company.name }}</td>
+          <td>
+            <p-button [routerLink]="['/companies/find/', company.id]" label="Clients" icon="pi pi-check" />
+            <p-button [routerLink]="['/companies/edit/', company.id]" label="Edit" icon="pi pi-check" />
+            <p-button label="Delete" (click)="deleteCompany(company.id); $event.preventDefault()" icon="pi pi-trash" />
+          </td>
+      </tr>
+  </ng-template>
+</p-table>
   

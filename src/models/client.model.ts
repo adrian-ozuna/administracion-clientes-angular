@@ -1,7 +1,7 @@
 import { Address } from "./address.model";
 
 export interface Client {
-    clientId: number;
+    id: number;
     firstName: string;
     lastName: string;
     companyId: number;
